@@ -1,44 +1,45 @@
 <div class="auto-reply-settings">
     <div class="inline-drawer">
-        <div class="inline-drawer-toggle inline-drawer-header" title="自动回复功能设置">
-            <b>Auto Reply</b>
+        <div class="inline-drawer-toggle inline-drawer-header" title="Auto Reply Settings"
+            data-i18n="[title]auto_reply_title">
+            <b data-i18n="auto_reply_header">Auto Reply</b>
             <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
         </div>
 
         <div class="inline-drawer-content">
             <!-- 状态与控制 -->
             <div class="auto-reply-status-bar">
-                <span id="auto_reply_status">已停止</span>
+                <span id="auto_reply_status" data-i18n="auto_reply_stopped">Stopped</span>
                 <span id="auto_reply_count" style="display: none;">(0/5)</span>
             </div>
             <div class="auto-reply-controls">
-                <button id="auto_reply_start" class="menu_button">开始</button>
-                <button id="auto_reply_stop" class="menu_button" disabled>停止</button>
+                <button id="auto_reply_start" class="menu_button" data-i18n="auto_reply_start">Start</button>
+                <button id="auto_reply_stop" class="menu_button" disabled data-i18n="auto_reply_stop">Stop</button>
             </div>
 
             <hr class="sysHR" />
 
             <!-- 发送模式 -->
             <div class="auto-reply-section">
-                <h4>发送模式</h4>
+                <h4 data-i18n="auto_reply_send_mode">Send Mode</h4>
                 <div class="auto-reply-block">
                     <input type="radio" id="auto_reply_mode_interval" name="auto_reply_mode" value="interval" checked />
-                    <label for="auto_reply_mode_interval">间隔模式</label>
+                    <label for="auto_reply_mode_interval" data-i18n="auto_reply_interval_mode">Interval Mode</label>
                     <div class="auto-reply-inline">
-                        <span>收到回复后等待</span>
+                        <span data-i18n="auto_reply_wait_after">Wait</span>
                         <input type="number" id="auto_reply_interval_time" class="text_pole widthUnset" min="1"
                             max="3600" value="10" />
-                        <span>秒发送</span>
+                        <span data-i18n="auto_reply_seconds_send">seconds after reply</span>
                     </div>
                 </div>
                 <div class="auto-reply-block">
                     <input type="radio" id="auto_reply_mode_cycle" name="auto_reply_mode" value="cycle" />
-                    <label for="auto_reply_mode_cycle">周期模式</label>
+                    <label for="auto_reply_mode_cycle" data-i18n="auto_reply_cycle_mode">Cycle Mode</label>
                     <div class="auto-reply-inline">
-                        <span>两次发送间隔至少</span>
+                        <span data-i18n="auto_reply_min_interval">Minimum interval</span>
                         <input type="number" id="auto_reply_cycle_time" class="text_pole widthUnset" min="1" max="3600"
                             value="60" />
-                        <span>秒</span>
+                        <span data-i18n="auto_reply_seconds">seconds</span>
                     </div>
                 </div>
             </div>
@@ -47,26 +48,28 @@
 
             <!-- 触发动作 -->
             <div class="auto-reply-section">
-                <h4>触发动作</h4>
+                <h4 data-i18n="auto_reply_trigger_action">Trigger Action</h4>
                 <div class="auto-reply-block">
                     <input type="radio" id="auto_reply_action_prompt" name="auto_reply_action" value="prompt" checked />
-                    <label for="auto_reply_action_prompt">发送提示词</label>
+                    <label for="auto_reply_action_prompt" data-i18n="auto_reply_send_prompt">Send Prompt</label>
                 </div>
                 <div class="auto-reply-block auto-reply-prompt-input">
-                    <input type="text" id="auto_reply_prompt" class="text_pole wide100p" placeholder="输入提示词..."
-                        value="*静静地等待着*" />
+                    <input type="text" id="auto_reply_prompt" class="text_pole wide100p"
+                        data-i18n="[placeholder]auto_reply_prompt_placeholder" placeholder="Enter prompt..."
+                        value="*Waiting silently*" />
                 </div>
                 <div class="auto-reply-block">
                     <input type="radio" id="auto_reply_action_continue" name="auto_reply_action" value="continue" />
-                    <label for="auto_reply_action_continue">使用继续</label>
+                    <label for="auto_reply_action_continue" data-i18n="auto_reply_use_continue">Use Continue</label>
                 </div>
                 <div class="auto-reply-block">
                     <input type="radio" id="auto_reply_action_regenerate" name="auto_reply_action" value="regenerate" />
-                    <label for="auto_reply_action_regenerate">使用重新生成</label>
+                    <label for="auto_reply_action_regenerate" data-i18n="auto_reply_use_regenerate">Use
+                        Regenerate</label>
                 </div>
                 <div class="auto-reply-block">
                     <input type="radio" id="auto_reply_action_swipe" name="auto_reply_action" value="swipe" />
-                    <label for="auto_reply_action_swipe">使用滑动</label>
+                    <label for="auto_reply_action_swipe" data-i18n="auto_reply_use_swipe">Use Swipe</label>
                 </div>
             </div>
 
@@ -74,9 +77,10 @@
 
             <!-- 限制 -->
             <div class="auto-reply-section">
-                <h4>限制</h4>
+                <h4 data-i18n="auto_reply_limits">Limits</h4>
                 <div class="auto-reply-block">
-                    <label for="auto_reply_max_count">次数上限 (0=无限)</label>
+                    <label for="auto_reply_max_count" data-i18n="auto_reply_max_count_label">Max count
+                        (0=unlimited)</label>
                     <input type="number" id="auto_reply_max_count" class="text_pole widthUnset" min="0" max="1000"
                         value="5" />
                 </div>

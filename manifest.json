@@ -7,6 +7,6 @@
     "css": "style.css",
     "author": "fishundbug",
     "version": "1.0.0",
-    "homePage": "https://github.com/fishundbug",
+    "homePage": "https://github.com/fishundbug/auto-reply",
     "description": "AI 回复后自动发送消息"
 }

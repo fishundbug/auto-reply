@@ -1,3 +1,9 @@
+# Auto Reply
+
+**[中文](#chinese) | [English](#english)**
+
+<a name="chinese"></a>
+
 # Auto Reply - SillyTavern 自动回复扩展
 
 在收到 AI 回复后自动发送下一条消息。
@@ -42,6 +48,54 @@
 | 提示词 | 发送提示词动作使用的文本内容 | `*静静地等待着*` |
 | 次数上限 | 最多发送次数，0 表示无限 | 5 次 |
 
-## 许可证
+---
+
+<a name="english"></a>
+
+# Auto Reply - SillyTavern Extension
+
+Automatically sends messages after receiving AI responses.
+
+## Features
+
+- **Interval Mode**: Wait specific seconds after receiving a reply before sending
+- **Cycle Mode**: Maintain a minimum interval between sends
+- **Multiple Trigger Actions**:
+  - Send custom prompt
+  - Use "Continue"
+  - Use "Regenerate"
+  - Use "Swipe"
+- **Limit Count**: Set a limit on the number of sends (0 for unlimited)
+- **Error Stop**: Automatically stops when a generation error is detected
+
+## Installation
+
+1. Go to SillyTavern Extensions menu
+2. Click "Install extension"
+3. Enter this repository URL and install
+
+Or manual installation:
+
+1. Place this folder into `SillyTavern/public/scripts/extensions/third-party/` directory
+2. Restart SillyTavern
+
+## Usage
+
+1. Find **Auto Reply** in the extensions settings panel
+2. Select send mode (Interval/Cycle) and set time
+3. Select trigger action (Prompt/Continue/Regenerate/Swipe)
+4. Set limit count (optional)
+5. Click "Start" button to begin auto-replying
+
+## Configuration
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| Interval Time | Seconds to wait after reply in Interval Mode | 10s |
+| Cycle Time | Minimum interval between sends in Cycle Mode | 60s |
+| Prompt | Text sent when using "Send Prompt" action | `*Waiting silently*` |
+| Max Count | Maximum number of sends (0 = unlimited) | 5 |
+
+## License
 
 MIT License
