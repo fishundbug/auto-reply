@@ -6,10 +6,16 @@
 
 import { saveSettingsDebounced, substituteParams } from '../../../../script.js';
 import { extension_settings, getContext, renderExtensionTemplateAsync } from '../../../extensions.js';
-import { addLocaleData, getCurrentLocale, translate } from '../../../i18n.js';
 
 const extensionName = 'third-party/Auto-Reply';
 const extensionFolderPath = `scripts/extensions/${extensionName}`;
+
+// i18n functions (will be loaded dynamically)
+let i18nFunctions = {
+    addLocaleData: null,
+    getCurrentLocale: () => navigator.language || 'en',
+    translate: (text, _key) => text,
+};
 
 // Default settings
 const defaultSettings = {
@@ -21,6 +27,9 @@ const defaultSettings = {
     maxCount: 5,
 };
 
+// Locale data cache
+let localeData = {};
+
 // Runtime state
 let isRunning = false;
 let sendCount = 0;
@@ -28,17 +37,37 @@ let lastSendTime = 0;
 let pendingTimeout = null;
 
 /**
+ * Try to load i18n module
+ */
+async function loadI18nModule() {
+    try {
+        const i18n = await import('../../../i18n.js');
+        if (i18n.addLocaleData) i18nFunctions.addLocaleData = i18n.addLocaleData;
+        if (i18n.getCurrentLocale) i18nFunctions.getCurrentLocale = i18n.getCurrentLocale;
+        if (i18n.translate) i18nFunctions.translate = i18n.translate;
+        console.log('[AutoReply] i18n module loaded');
+        return true;
+    } catch (error) {
+        console.log('[AutoReply] i18n module not available, using fallback');
+        return false;
+    }
+}
+
+/**
  * Load locale data for the extension
  */
 async function loadLocaleData() {
-    const locale = getCurrentLocale();
+    const locale = i18nFunctions.getCurrentLocale();
     const localeFile = locale.startsWith('zh') ? 'zh-cn' : 'en';
 
     try {
         const response = await fetch(`/${extensionFolderPath}/locales/${localeFile}.json`);
         if (response.ok) {
-            const data = await response.json();
-            addLocaleData(locale, data);
+            localeData = await response.json();
+            // Try to add to SillyTavern's locale system
+            if (i18nFunctions.addLocaleData) {
+                i18nFunctions.addLocaleData(locale, localeData);
+            }
             console.log(`[AutoReply] Loaded locale: ${localeFile}`);
         }
     } catch (error) {
@@ -54,10 +83,11 @@ async function loadLocaleData() {
  * @returns {string} Translated text
  */
 function t(key, fallback, ...args) {
-    let text = translate(fallback, key);
+    // Try local cache first, then i18n module
+    let text = localeData[key] || i18nFunctions.translate(fallback, key) || fallback;
     // Replace ${0}, ${1}, etc. with args
     args.forEach((arg, i) => {
-        text = text.replace(`\${${i}}`, arg);
+        text = text.replace(`\${${i}}`, String(arg));
     });
     return text;
 }
@@ -307,7 +337,10 @@ function onGenerationError() {
 async function init() {
     console.log('[AutoReply] Initializing...');
 
-    // Load locale data first
+    // Try to load i18n module
+    await loadI18nModule();
+
+    // Load locale data
     await loadLocaleData();
 
     // Load settings
