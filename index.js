@@ -7,7 +7,7 @@
 import { saveSettingsDebounced, substituteParams } from '../../../../script.js';
 import { extension_settings, getContext, renderExtensionTemplateAsync } from '../../../extensions.js';
 
-const extensionName = 'third-party/Auto-Reply';
+const extensionName = 'third-party/auto-reply';
 const extensionFolderPath = `scripts/extensions/${extensionName}`;
 
 // i18n functions (will be loaded dynamically)
