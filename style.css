@@ -1,0 +1,83 @@
+/* Auto Reply 扩展样式 */
+
+.auto-reply-settings {
+    padding: 0;
+}
+
+.auto-reply-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.auto-reply-status-bar.running {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+}
+
+.auto-reply-status-bar.stopped {
+    background: rgba(107, 114, 128, 0.2);
+    color: #9ca3af;
+}
+
+.auto-reply-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.auto-reply-controls .menu_button {
+    flex: 1;
+    min-width: auto;
+}
+
+.auto-reply-section h4 {
+    margin: 8px 0;
+    font-size: 0.9em;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.auto-reply-block {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.auto-reply-block input[type="radio"],
+.auto-reply-block input[type="checkbox"] {
+    margin: 0;
+}
+
+.auto-reply-block label {
+    cursor: pointer;
+}
+
+.auto-reply-inline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 24px;
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.auto-reply-inline input[type="number"] {
+    width: 60px;
+    text-align: center;
+}
+
+.auto-reply-prompt-input {
+    margin-left: 24px;
+    margin-bottom: 12px;
+}
+
+.auto-reply-prompt-input input {
+    width: 100%;
+}
